@@ -13,7 +13,7 @@
   "requirements": ["openai==1.59.9"],
   "brand": {
     "name": "DeepSeek",
-    "logo": "custom_components/deepseek_conversation/frontend/images/logo.png",
-    "icon": "custom_components/deepseek_conversation/frontend/images/icon.png"
+    "logo": "/local/deepseek_logo_v1",
+    "icon": "/local/deepseek_icon_v1"
   }
 }
