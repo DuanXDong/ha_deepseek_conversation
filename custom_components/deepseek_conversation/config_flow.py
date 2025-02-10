@@ -14,7 +14,6 @@ from homeassistant.config_entries import (
     ConfigFlow,
     ConfigFlowResult,
     OptionsFlow,
-    CONN_CLASS_CLOUD_POLLING,
 )
 from homeassistant.const import CONF_API_KEY, CONF_LLM_HASS_API
 from homeassistant.core import HomeAssistant, callback
@@ -74,9 +73,6 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> None:
 
 class DeepSeekConfigFlow(ConfigFlow, domain=DOMAIN):
     """处理DeepSeek对话集成的配置流程"""
-    
-    VERSION = 1
-    CONNECTION_CLASS = CONN_CLASS_CLOUD_POLLING
 
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
