@@ -10,5 +10,10 @@
   "issue_tracker": "https://github.com/DuanXDong/ha_deepseek_conversation/issues",
   "iot_class": "cloud_polling",
   "integration_type": "service",
-  "requirements": ["openai==1.59.9"]
+  "requirements": ["openai==1.59.9"],
+  "brand": {
+    "name": "DeepSeek",
+    "logo": "./frontend/images/logo.png",
+    "icon": "./frontend/images/icon.png"
+  }
 }

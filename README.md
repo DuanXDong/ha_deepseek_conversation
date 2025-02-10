@@ -1,24 +1,27 @@
-# DeepSeek对话集成 for HomeAssistant
+# 🚀 DeepSeek智能家居对话助手
 
 ![Home Assistant版本要求](https://img.shields.io/badge/homeassistant-2024.3%2B-blue)
-![许可证](https://img.shields.io/badge/license-木兰宽松许可证%202.0-green)
+![授权协议](https://img.shields.io/badge/license-Apache%202.0-green)
 
-本集成允许在HomeAssistant中使用DeepSeek的对话和图像生成能力，为智能家居提供AI交互功能。
+让您的HomeAssistant通过DeepSeek大模型获得自然对话能力，像管家一样控制智能家居设备！
 
-## 功能特性
+## 🌟 核心功能
+| 功能类别       | 具体能力                  | 使用场景示例               |
+|----------------|--------------------------|--------------------------|
+| **基础对话**    | 自然语言交互              | "打开客厅的灯"           |
+| **设备控制**    | 通过对话操作智能设备       | "把空调调到26度"         |
+| **状态查询**    | 查询设备状态              | "现在室内温度是多少？"    |
+| **情景模式**    | 执行复杂场景              | "我要看电影模式"          |
 
-✅ 自然语言对话交互  
-⚙️ 可调节的AI参数（温度、top_p等）  
-🤖 支持HomeAssistant服务调用  
-🔧 可视化配置界面
 
 ## 安装方法
 
 ### 通过HACS安装（推荐）
 1. 打开HACS -> 集成
-2. 点击右下角`+ 浏览并添加仓库`
-3. 搜索 `ha_deepseek_conversation` 并添加
-4. 在集成列表中找到并安装
+2. 点击右上角三个点菜单 -> 自定义仓库
+3. 输入仓库URL：`https://github.com/DuanXDong/ha_deepseek_conversation`
+4. 选择类别为"Integration"
+5. 点击添加，然后在集成列表中找到并安装
 
 ### 手动安装
 1. 下载最新发布版ZIP文件
@@ -94,3 +97,11 @@ A: 建议值5-10条，过多会导致：
 1. 消耗更多API tokens
 2. 模型可能遗忘早期对话重点
 3. 增加响应延迟
+
+
+## 🤝 参与贡献
+欢迎通过以下方式参与改进：
+1. 提交Issue报告问题
+2. 发起Pull Request贡献代码
+3. 完善[中文文档](docs/README_ZH.md)
+4. 分享你的使用案例

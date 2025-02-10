@@ -14,9 +14,10 @@ from homeassistant.config_entries import (
     ConfigFlow,
     ConfigFlowResult,
     OptionsFlow,
+    conn_class,
 )
 from homeassistant.const import CONF_API_KEY, CONF_LLM_HASS_API
-from homeassistant.core import HomeAssistant
+from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers import llm
 from homeassistant.helpers.selector import (
     NumberSelector,
@@ -76,7 +77,15 @@ class DeepSeekConfigFlow(ConfigFlow, domain=DOMAIN):
     
     属性:
         VERSION: 配置版本号，当配置结构变更时需要递增
+        CONNECTION_CLASS: 连接类，用于配置流程的连接类型
+        brand: 品牌名称
+        integration_type: 集成类型
     """
+
+    VERSION = 1
+    CONNECTION_CLASS = conn_class.CONN_CLASS_CLOUD_POLL
+    brand = "DeepSeek"
+    integration_type = "service"
 
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
@@ -115,9 +124,8 @@ class DeepSeekConfigFlow(ConfigFlow, domain=DOMAIN):
         )
 
     @staticmethod
-    def async_get_options_flow(
-        config_entry: ConfigEntry,
-    ) -> OptionsFlow:
+    @callback
+    def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow:
         """Create the options flow."""
         return DeepSeekOptionsFlow(config_entry)
 

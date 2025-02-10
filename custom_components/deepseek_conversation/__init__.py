@@ -87,16 +87,20 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
     return True
 
 
-async def async_setup_entry(hass: HomeAssistant, entry: OpenAIConfigEntry) -> bool:
-    """设置DeepSeek集成条目
-    Args:
-        hass: Home Assistant实例
-        entry: 配置条目
-    Returns:
-        bool: 设置是否成功
-    Raises:
-        ConfigEntryNotReady: 当API验证失败时抛出
-    """
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+    """设置DeepSeek集成条目"""
+    # 注册前端资源路径
+    hass.http.register_static_path(
+        "/deepseek_logo",
+        hass.config.path("custom_components/deepseek_conversation/frontend/images/logo.png"),
+        True
+    )
+    hass.http.register_static_path(
+        "/deepseek_icon",
+        hass.config.path("custom_components/deepseek_conversation/frontend/images/icon.png"),
+        True
+    )
+    
     # 初始化DeepSeek客户端
     client = openai.AsyncOpenAI(
         api_key=entry.data[CONF_API_KEY],
