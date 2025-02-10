@@ -14,7 +14,7 @@ from homeassistant.config_entries import (
     ConfigFlow,
     ConfigFlowResult,
     OptionsFlow,
-    conn_class,
+    CONN_CLASS_CLOUD_POLLING,
 )
 from homeassistant.const import CONF_API_KEY, CONF_LLM_HASS_API
 from homeassistant.core import HomeAssistant, callback
@@ -73,19 +73,10 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> None:
 
 
 class DeepSeekConfigFlow(ConfigFlow, domain=DOMAIN):
-    """处理DeepSeek对话集成的配置流程
+    """处理DeepSeek对话集成的配置流程"""
     
-    属性:
-        VERSION: 配置版本号，当配置结构变更时需要递增
-        CONNECTION_CLASS: 连接类，用于配置流程的连接类型
-        brand: 品牌名称
-        integration_type: 集成类型
-    """
-
     VERSION = 1
-    CONNECTION_CLASS = conn_class.CONN_CLASS_CLOUD_POLL
-    brand = "DeepSeek"
-    integration_type = "service"
+    CONNECTION_CLASS = CONN_CLASS_CLOUD_POLLING
 
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
