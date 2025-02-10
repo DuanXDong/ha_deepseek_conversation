@@ -1,0 +1,14 @@
+{
+  "domain": "deepseek_conversation",
+  "name": "DeepSeek Conversation",
+  "version": "1.0.0",
+  "after_dependencies": ["assist_pipeline", "intent"],
+  "codeowners": ["@DuanXDong"],
+  "config_flow": true,
+  "dependencies": ["conversation"],
+  "documentation": "https://github.com/DuanXDong/ha_deepseek_conversation/blob/master/README.md",
+  "issue_tracker": "https://github.com/DuanXDong/ha_deepseek_conversation/issues",
+  "iot_class": "cloud_polling",
+  "integration_type": "service",
+  "requirements": ["openai==1.59.9"]
+}
