@@ -89,17 +89,6 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """设置DeepSeek集成条目"""
-    # 注册前端资源路径
-    hass.http.register_static_path(
-        "/deepseek_logo",
-        hass.config.path("custom_components/deepseek_conversation/frontend/images/logo.png"),
-        True
-    )
-    hass.http.register_static_path(
-        "/deepseek_icon",
-        hass.config.path("custom_components/deepseek_conversation/frontend/images/icon.png"),
-        True
-    )
     
     # 初始化DeepSeek客户端
     client = openai.AsyncOpenAI(
