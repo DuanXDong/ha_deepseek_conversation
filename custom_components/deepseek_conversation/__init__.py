@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import openai
 import voluptuous as vol
-import os
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_API_KEY, Platform
@@ -90,24 +89,6 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """设置DeepSeek集成条目"""
-    # 增加路径验证
-    logo_path = hass.config.path("custom_components/deepseek_conversation/frontend/images/logo.png")
-    icon_path = hass.config.path("custom_components/deepseek_conversation/frontend/images/icon.png")
-    
-    if not await hass.async_add_executor_job(os.path.isfile, logo_path):
-        _LOGGER.error("Logo文件未找到：%s", logo_path)
-    
-    # 注册带版本号的静态路径
-    hass.http.register_static_path(
-        "/deepseek_logo_v1",
-        logo_path,
-        True
-    )
-    hass.http.register_static_path(
-        "/deepseek_icon_v1",
-        icon_path,
-        True
-    )
     
     # 初始化DeepSeek客户端
     client = openai.AsyncOpenAI(
