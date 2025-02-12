@@ -40,6 +40,8 @@ from .const import (
     RECOMMENDED_MAX_TOKENS,
     RECOMMENDED_TEMPERATURE,
     RECOMMENDED_TOP_P,
+    CONF_BASE_URL,
+    DEFAULT_BASE_URL,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -47,6 +49,10 @@ _LOGGER = logging.getLogger(__name__)
 STEP_USER_DATA_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_API_KEY): str,
+        vol.Optional(
+            CONF_BASE_URL,
+            default=DEFAULT_BASE_URL,
+        ): str,
     }
 )
 
@@ -67,7 +73,10 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> None:
         openai.AuthenticationError: API认证失败
         Exception: 其他未知错误
     """
-    client = openai.AsyncOpenAI(api_key=data[CONF_API_KEY])
+    client = openai.AsyncOpenAI(
+        api_key=data[CONF_API_KEY],
+        base_url=data.get(CONF_BASE_URL, DEFAULT_BASE_URL)
+    )
     await hass.async_add_executor_job(client.with_options(timeout=10.0).models.list)
 
 

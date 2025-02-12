@@ -22,7 +22,7 @@ from homeassistant.helpers import config_validation as cv, selector
 from homeassistant.helpers.httpx_client import get_async_client
 from homeassistant.helpers.typing import ConfigType
 
-from .const import DOMAIN, LOGGER
+from .const import DOMAIN, LOGGER, CONF_BASE_URL, DEFAULT_BASE_URL
 
 SERVICE_GENERATE_IMAGE = "generate_image"
 PLATFORMS = (Platform.CONVERSATION,)
@@ -93,7 +93,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     # 初始化DeepSeek客户端
     client = openai.AsyncOpenAI(
         api_key=entry.data[CONF_API_KEY],
-        base_url="https://api.deepseek.com/v1",  # DeepSeek专用API端点
+        base_url=entry.data.get(CONF_BASE_URL, DEFAULT_BASE_URL),  # 从配置读取URL
         http_client=get_async_client(hass),
     )
 

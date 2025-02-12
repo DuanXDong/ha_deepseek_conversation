@@ -3,6 +3,8 @@
 import logging
 
 DOMAIN = "deepseek_conversation"
+CONF_BASE_URL = "base_url"
+DEFAULT_BASE_URL = "https://api.deepseek.com/v1"
 LOGGER = logging.getLogger(__package__)
 
 CONF_RECOMMENDED = "recommended"
